@@ -25,7 +25,6 @@ def collect_data():
 
 
 def plot_data():
-    # Read data from log file
     with open('sensor_data.log', 'r') as file:
         lines = file.readlines()
 
@@ -33,14 +32,12 @@ def plot_data():
     temperatures = []
     rains = []
 
-    # Process each line of data
     for line in lines:
         data = json.loads(line)
         timestamps.append(data['timestamp'])
         temperatures.append(data['temperature'])
         rains.append(data['rain'])
 
-    # Plotting
     fig, ax1 = plt.subplots()
 
     ax1.set_xlabel('Time')
@@ -53,7 +50,6 @@ def plot_data():
     ax2.plot(timestamps, rains, 'b-')
     ax2.tick_params(axis='y', labelcolor='tab:blue')
 
-    # Formatting and saving the plot
     fig.tight_layout()
     plt.xticks(rotation=45)
     plt.title('Temperature and Rain Data Over Time')
